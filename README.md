@@ -1,5 +1,7 @@
-[FROSTBLACK]
-## Installation instructions
+## FROSTBLACK - ApiTwitchSysteme
+
+### Installation instructions
+==============================================================
 
 Follow these steps to download and install the required files :
 
