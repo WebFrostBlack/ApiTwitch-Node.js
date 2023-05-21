@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil Twitch</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            background-color: #640570;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 10%;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+        }
+
+        .profile-label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        .profile-value {
+            color: #777777;
+        }
+
+        .profile-separator {
+            border-bottom: 1px solid #dddddd;
+            margin: 10px 0;
+        }
+
+        .logout-button {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #b200b2;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .logout-button:hover {
+            background-color: #640570;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <img id="profile-image" class="profile-image" src="" alt="Profile Image">
+        <div class="profile-details">
+            <p><span class="profile-label">ID:</span> <span id="profile-id" class="profile-value"></span></p>
+            <div class="profile-separator"></div>
+            <p><span class="profile-label">Login:</span> <span id="profile-login" class="profile-value"></span></p>
+            <div class="profile-separator"></div>
+            <p><span class="profile-label">Display Name:</span> <span id="profile-display-name" class="profile-value"></span></p>
+            <div class="profile-separator"></div>
+            <p><span class="profile-label">Email:</span> <span id="profile-email" class="profile-value"></span></p>
+            <div class="profile-separator"></div>
+            <p><span class="profile-label">View Count:</span> <span id="profile-view-count" class="profile-value"></span></p>
+            <div class="profile-separator"></div>
+            <p><span class="profile-label">Created At:</span> <span id="profile-created-at" class="profile-value"></span></p>
+        </div>
+        <button id="logout-button" class="logout-button">Déconnexion</button>
+    </div>
+    <script>
+        // Fonction pour récupérer les données du profil via une requête AJAX
+        function getProfileData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/profile-data', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var profileData = JSON.parse(xhr.responseText);
+                    updateProfileElements(profileData);
+                }
+            };
+            xhr.send();
+        }
+
+        // Fonction pour mettre à jour les éléments HTML avec les données du profil
+        function updateProfileElements(profileData) {
+            document.getElementById('profile-image').src = profileData.profile_image_url;
+            document.getElementById('profile-id').textContent = profileData.id;
+            document.getElementById('profile-login').textContent = profileData.login;
+            document.getElementById('profile-display-name').textContent = profileData.display_name;
+            document.getElementById('profile-email').textContent = profileData.email;
+            document.getElementById('profile-view-count').textContent = profileData.view_count;
+            document.getElementById('profile-created-at').textContent = profileData.created_at;
+        }
+
+        // Appel de la fonction pour récupérer et afficher les données du profil
+        getProfileData();
+
+        // Gestion du clic sur le bouton de déconnexion
+        var logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', function() {
+            window.location.href = '/logout';
+        });
+        // Vérifier si le paramètre d'erreur existe dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+    
+        // Afficher une alerte si le paramètre d'erreur est présent
+        if (error) {
+            alert('Erreur 404: Page non trouvée');
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion à Twitch</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-button {
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            transition: 0.5s;
+        }
+
+        .login-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <a href="/auth/twitch" class="login-button">Se connecter avec Twitch</a>
+</body>
+
+<script>
+    // Vérifier si le paramètre d'erreur existe dans l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+
+    // Afficher une alerte si le paramètre d'erreur est présent
+    if (error) {
+        alert('Erreur 404: Page non trouvée');
+    }
+</script>
+
+</html>
