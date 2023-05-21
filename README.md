@@ -25,4 +25,4 @@ npm install path
 ```
 node index.js
 ```
-5. Ouvrez votre navigateur et accédez à l'URL suivante : [localhost:3000](http://localhost:3000)
+5. Open your browser and go to the following URL : [localhost:3000](http://localhost:3000)
