@@ -1,4 +1,4 @@
-## FROSTBLACK - ApiTwitchSysteme
+## ©FROSTBLACK - ApiTwitchSysteme
 
 ### Installation instructions
 ==============================================================
